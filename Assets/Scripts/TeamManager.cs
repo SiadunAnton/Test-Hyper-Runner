@@ -11,7 +11,6 @@ public class TeamManager : MonoBehaviour
 
     [SerializeField] private Transform _teamHolder;
     [SerializeField] private GameObject _humanPrefab;
-    [SerializeField] private ObjectController _controller;
 
     [SerializeField] private int _members = 0;
     [SerializeField] private int _resourcesAmount = 0;
@@ -29,7 +28,7 @@ public class TeamManager : MonoBehaviour
 
     public void AddHuman(Vector3 position)
     {
-        _controller.spawnCount++;
+        Instantiate(_humanPrefab,position,Quaternion.identity,_teamHolder);
         _members++;
     }
 

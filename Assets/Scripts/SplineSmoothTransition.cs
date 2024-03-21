@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class SplineSmoothTransition : MonoBehaviour
 {
+
+    [SerializeField] private ObjectController _controller;
+
     [SerializeField] private float _transitionDeltaTime = 1f;
     [SerializeField] private int _smoothness = 3;
 
@@ -19,13 +22,14 @@ public class SplineSmoothTransition : MonoBehaviour
     IEnumerator AdaptNewPointsToSpline(SplinePoint[] newPoints)
     {
         SplinePoint[] oldPoints = _spline.GetPoints();
-
+        _controller.autoUpdate = true;
         for (int i = 0; i < _smoothness; i++)
         {
 
             SetPoints(LerpSplinePoints(oldPoints,newPoints, (float)i/_smoothness));
             yield return new WaitForSeconds(_transitionDeltaTime);
         }
+        _controller.autoUpdate = false;
     }
 
     private SplinePoint[] LerpSplinePoints(SplinePoint[] points1, SplinePoint[] points2, float t)
