@@ -5,15 +5,17 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] private Vector3 _offset;
-    // Start is called before the first frame update
-    void Start()
+
+    private bool _enabled = true;
+
+    public void Stop()
     {
-        
+        _enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.position += _offset;
+        if(_enabled)
+            transform.position += _offset;
     }
 }
