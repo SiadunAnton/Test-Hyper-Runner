@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class LinePainter : MonoBehaviour
 {
+    public Action<Vector3[]> OnDrawLine;
+
     [SerializeField] private float _minDistance;
 
     private LineRenderer _line;
@@ -38,6 +41,10 @@ public class LinePainter : MonoBehaviour
     public void Stop()
     {
         _paint = false;
+        Vector3[] positions = new Vector3[_line.positionCount];
+        _line.GetPositions(positions);
+        Debug.Log(positions[0]);
+        OnDrawLine?.Invoke(positions);
         _previousPosition = Vector3.zero;
     }
 

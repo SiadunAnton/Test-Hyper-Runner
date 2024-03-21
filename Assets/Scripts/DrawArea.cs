@@ -23,7 +23,7 @@ public class DrawArea : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
     private void StartDrawing()
     {
         _isDrawingStarted = true;
-        _painter.ClearCanvas();
+        
         _painter.Draw();
         Debug.Log("Drawing started.");
     }
@@ -32,6 +32,7 @@ public class DrawArea : MonoBehaviour, IPointerDownHandler, IPointerExitHandler
     {
         _isDrawingStarted = false;
         _painter.Stop();
+        _painter.ClearCanvas();
         Debug.Log("Drawing ended.");
     }
 }
