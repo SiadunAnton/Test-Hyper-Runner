@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Dreamteck.Splines;
 
 public class TeamManager : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class TeamManager : MonoBehaviour
 
     public void AddHuman(Vector3 position)
     {
-        Instantiate(_humanPrefab, position, Quaternion.identity, _teamHolder);
+        Instantiate(_humanPrefab,position,Quaternion.identity,_teamHolder);
         _members++;
     }
 
